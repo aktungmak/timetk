@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>timetk | netcodes</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/extra.css">
+  </head>
+  <body>
+    <nav class="nav" tabindex="-1" onclick="this.focus()">
+      <div class="container">
+        <a class="pagename current" href="#">timetk</a>
+        <a href="index.html">Activities</a>
+        <a href="#" class="current">Manage Netcodes</a> 
+        <a href="historyedit.html">Edit History</a>
+        <a href="reports.html">Reporting</a>
+      </div>
+    </nav>
+    <div class="row">
+      <form data-bind="submit: addNetcode"> 
+        <input type="text" class="smooth" placeholder="Netcode" name="netcode">
+        <input type="text" class="smooth" placeholder="Title" name="title">
+        <input type="text" class="smooth" placeholder="Description" name="description">
+        <button type="submit" class="btn btn-sm btn-b smooth">Add</button>
+      </form>
+      <hr/>
+    </div>
+    <div class="row">    
+      <table class="table">
+        <thead>
+          <tr>
+            <td>Active</td>
+            <td>Netcode</td>
+            <td>Title</td>
+            <td>Description</td>
+            <td>Delete</td>
+          </tr>
+        </thead>
+        <tbody data-bind="foreach: { data: rows }">
+          <tr>
+            <td>
+              <a class="btn btn-sm smooth" data-bind="text: visibletext, click: visibility, css: {'btn-n': !visible(), 'btn-a': visible()}"></a>
+            </td>
+            <td data-bind="text: netcode"></td>
+            <td data-bind="text: title"></td>
+            <td data-bind="text: description"></td>
+            <td>
+              <a class="btn btn-c btn-sm smooth" data-bind="click: deleteNetcode">X</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="js/vendor/jquery-1.11.0.min.js"></script>
+    <script src="js/vendor/knockout-3.2.0.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

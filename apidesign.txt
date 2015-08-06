@@ -1,0 +1,67 @@
+= Methods ====
+
+startTimer
+	user
+	netcode
+	time
+	
+stopTimer
+	user
+	netcode
+	time
+
+cancelTimer
+	user
+	netcode
+
+getReport
+	user
+	netcode
+	startTime
+	endTime
+
+listAllActivities
+	user
+
+listVisibleActivities
+	user
+
+addActivity
+	user
+	netcode
+	title
+	description
+
+removeActivity
+	user
+	netcode
+
+setActivityVisibility
+	user
+	netcode
+	visibility
+
+= Tables ====
+
+users
+	user
+	password?
+	displayName
+	
+netcodes
+	user
+	netcode
+	title
+	description
+	visibility
+
+currentActivities
+	user
+	netcode
+	startTime
+
+completedActivities
+	user
+	netcode
+	startTime
+	endTime

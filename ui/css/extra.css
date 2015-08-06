@@ -1,0 +1,59 @@
+.cell {
+    display: inline-block;
+    margin: 0px;
+    width: 80px;
+    height: 50px;
+    background-color: #4D4D70;
+}
+
+.active1 {
+    background-color: #A09165;
+}
+
+.active2 {
+    background-color: #8F5A6A;
+}
+
+.active3 {
+    background-color: #728E5A;
+}
+
+.active4 {
+    border: 5px solid #8F5A6A;
+    width: 70px;
+    height: 40px;
+}
+
+.grow {
+    white-space: nowrap;
+    display: inline-block;
+    margin: 0px;
+}
+
+.grid {
+    overflow: scroll;
+    background-color: #212148;
+    padding: 20px;
+}
+
+.header {
+    background-color: inherit;
+    color: #FFF;
+    height: auto;
+}
+
+.fixed {
+    position: absolute;
+    background-color: rgba(255,255,255,0);
+    color: #FFF;
+    padding: 10px;
+    cursor: default;
+}
+
+#nextweek, #prevweek {
+    float: right;
+}
+
+thead {
+    font-weight: bold;
+}

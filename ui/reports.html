@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>timetk | report</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/extra.css">
+    <link rel="stylesheet" href="css/pikaday.min.css">
+  </head>
+  <body>
+    <nav class="nav" tabindex="-1" onclick="this.focus()">
+      <div class="container">
+        <a class="pagename current" href="#">timetk</a>
+        <a href="index.html">Activities</a>
+        <a href="netcodes.html">Manage Netcodes</a> 
+        <a href="historyedit.html">Edit History</a>
+        <a href="#" class="current">Reporting</a>
+      </div>
+    </nav>
+    <div class="row">
+      <!-- datepick start/end here -->
+      <form data-bind="submit: getReport"> 
+        <input id="rstart" type="text" class="smooth" placeholder="start date" name="rstart">
+        <input id="rfinish" type="text" class="smooth" placeholder="finish date" name="rfinish">
+        <button type="submit" class="btn btn-sm btn-b smooth">Go</button>
+        &nbsp;
+        <input type="radio" value="day"  name="reportType" data-bind="checked: reportType"> Simple View</input>
+        <input type="radio" value="week" name="reportType" data-bind="checked: reportType"> Compatibility View</input>
+        &nbsp;
+        <button type="button" id="nextweek" class="btn btn-sm btn-a smooth">Next Week -></button>
+        <button type="button" id="prevweek" class="btn btn-sm btn-a smooth"><- Prev Week</button>
+      </form>
+      <hr/>
+    </div>
+    <div class="msg" style="display:none;" data-bind="visible: days().length == 0">No hours for that date range!</div>
+    <div id="dayview" data-bind="visible: reportType() == 'day'">
+    <!-- ko foreach: days -->
+      <div class="row">
+        <h2 class="col c2" data-bind="text: dispdate"></h2>
+        <table class="table col c10">
+          <thead>
+            <tr>
+              <td>Netcode</td>
+              <td>Title</td>
+              <td>Time (sec)</td>
+              <td>Time (decimal)</td>
+            </tr>
+          </thead>
+          <tbody data-bind="foreach: netcodes">
+            <tr>
+              <td data-bind="text: netcode"></td>
+              <td data-bind="text: title"></td>
+              <td data-bind="text: duration"></td>
+              <td data-bind="text: decdur"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <!-- /ko -->
+    </div>
+
+    <div id="weekview" data-bind="visible: reportType() == 'week'">
+      <table class="table" data-bind="visible: days().length != 0">
+          <thead>
+            <tr>
+              <td>Netcode</td>
+              <!-- ko foreach: days -->
+                <td data-bind="text: dispdate"></td>
+              <!-- /ko -->
+            </tr>
+          </thead>
+          <tbody>
+            <!-- ko foreach: { data: aggNetcodes, as: 'nc' } -->
+            <tr>
+              <td data-bind="text: $data"></td>
+              <!-- ko foreach: $root.days -->
+              <td data-bind="text: $root.getTime($index(), nc)"></td>
+              <!-- /ko -->
+            </tr>
+            <!-- /ko -->
+            <tr>
+              <td><b>Day Total:</b></td>
+              <!-- ko foreach: $root.days -->
+              <td><b data-bind="text: dayTotal"></b></td>
+              <!-- /ko -->
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    <script src="js/vendor/jquery-1.11.0.min.js"></script>
+    <script src="js/vendor/knockout-3.2.0.min.js"></script>
+    <script src="js/vendor/pikaday.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
